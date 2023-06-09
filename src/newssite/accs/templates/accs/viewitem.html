@@ -1,0 +1,42 @@
+{% extends 'coreapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+<div class="card mt-2 bg-secondary">
+
+  <div class="card-body">
+
+   
+
+   <a href="{% url 'accs:change_item' bigitem.id %}"><b><h2>{{ bigitem.title }}</h2></b></a>
+   {{ bigitem.memo}}
+  </div>
+</div>
+
+{% for i in smallitems %}
+<div class="card mt-5 bg-secondary ">
+
+  <div class="card-body">
+     <a href="{% url 'accs:change_subitem' bigitem.id i.id %}"><b><h2>{{ i.title }}</h2></b></a>
+     {{ i.memo}}
+  </div>
+</div>
+
+
+
+{% endfor %}
+<br>
+
+<div class="card mt-2 bg-secondary "> 
+  <div class="card-body">
+   {% if bigitem.published %}
+     <a href="{% url 'accs:publication' bigitem.id %}" class="btn btn-info">скрыть </a>
+   {% else %}
+     <a href="{% url 'accs:publication' bigitem.id %}" class="btn btn-info">опубликовать </a>
+   {% endif %}
+ <a href="{% url 'accs:create_subitem' bigitem.id %}" class="btn btn-success">создать блок</a>
+  </div>
+</div>
+
+</div>
+{% endblock %}

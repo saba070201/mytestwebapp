@@ -1,16 +1,14 @@
-"""
-WSGI config for newssite project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
-"""
-
 import os
+import sys
 
+# assuming your django settings file is at '/home/denniskot/mysite/mysite/settings.py'
+# and your manage.py is is at '/home/denniskot/mysite/manage.py'
+path = '/home/saba07022001/myapp/testwebapp/src/newssite'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'newssite.settings'
+
+# then:
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'newssite.settings')
-
 application = get_wsgi_application()
